@@ -3,108 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manta Studio | Architecture & Design</title>
+    <title>Manta Studio | Architecture & Design Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #c5a059; --dark: #0a0a0a; }
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: var(--dark); scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: var(--dark); scroll-behavior: smooth; overflow-x: hidden; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .gold-text { color: var(--gold); }
         .gold-bg { background-color: var(--gold); }
         
-        /* Animacja wejścia dla sekcji */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* Animacje Reveal */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.2, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Płynne podkreślenie w menu */
-        .nav-link { position: relative; padding-bottom: 2px; }
-        .nav-link::after {
-            content: ''; position: absolute; width: 0; height: 1px; bottom: 0; left: 0;
-            background-color: var(--gold); transition: width 0.3s ease;
-        }
-        .nav-link:hover::after { width: 100%; }
-
-        header { height: 90vh; display: flex; align-items: center; }
-        section { padding: 100px 0; }
+        .lang-en { display: none; }
+        .nav-link:hover { color: var(--gold); }
+        header { min-height: 90vh; display: flex; align-items: center; }
+        section { padding: 120px 0; }
     </style>
 </head>
 <body>
 
-    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100 px-8 py-6 flex justify-between items-center">
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100 px-8 py-6 flex justify-between items-center">
         <div class="text-xl font-bold tracking-[0.4em]">MANTA STUDIO</div>
-        <div class="hidden md:flex space-x-10 text-[10px] uppercase tracking-[0.2em] font-semibold">
-            <a href="#about" class="nav-link">O nas</a>
-            <a href="#specialties" class="nav-link">Specjalizacje</a>
-            <a href="#portfolio" class="nav-link">Portfolio</a>
-            <a href="#contact" class="nav-link">Kontakt</a>
+        <div class="flex items-center space-x-8">
+            <div class="hidden md:flex space-x-10 text-[10px] uppercase tracking-[0.2em] font-semibold">
+                <a href="#about" class="nav-link"><span class="lang-pl">O nas</span><span class="lang-en">About</span></a>
+                <a href="#specialties" class="nav-link"><span class="lang-pl">Specjalizacje</span><span class="lang-en">Specialties</span></a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#contact" class="nav-link"><span class="lang-pl">Kontakt</span><span class="lang-en">Contact</span></a>
+            </div>
+            <button onclick="toggleLang()" id="langBtn" class="border border-gold px-3 py-1 text-[10px] gold-text font-bold hover:bg-gold hover:text-white transition">EN</button>
         </div>
     </nav>
 
     <header class="px-8 md:px-20">
         <div class="reveal active">
-            <p class="text-xs uppercase tracking-[0.5em] gold-text font-bold mb-6">International Architecture</p>
-            <h1 class="text-6xl md:text-8xl font-light leading-[1.1] mb-8">
-                Projektujemy <br><span class="italic gold-text">przestrzeń jutra.</span>
+            <p class="text-[10px] uppercase tracking-[0.5em] gold-text font-bold mb-6">International Architecture & Management</p>
+            <h1 class="text-6xl md:text-8xl font-light leading-[1.1] mb-10">
+                <span class="lang-pl">Projektujemy <br><span class="italic gold-text">przestrzeń jutra.</span></span>
+                <span class="lang-en">Designing <br><span class="italic gold-text">tomorrow's space.</span></span>
             </h1>
-            <p class="max-w-xl text-gray-500 text-lg font-light leading-relaxed mb-12">
-                Łączymy globalną perspektywę z troską o ludzi, środowisko i sens biznesowy. Ponad 65 lat wspólnego doświadczenia.
+            <p class="max-w-xl text-gray-400 text-lg font-light leading-relaxed mb-12">
+                <span class="lang-pl">Pomagamy inwestorom realizować wizje na 4 kontynentach. Łączymy design z rygorem biznesowym.</span>
+                <span class="lang-en">Helping investors realize visions across 4 continents. Merging design with business rigor.</span>
             </p>
-            <a href="#portfolio" class="inline-block border border-black px-10 py-4 text-[10px] uppercase tracking-widest font-bold hover:bg-black hover:text-white transition">Eksploruj projekty</a>
+            <a href="#portfolio" class="inline-block border border-black px-12 py-4 text-[10px] uppercase tracking-widest font-bold hover:bg-black hover:text-white transition">
+                <span class="lang-pl">Eksploruj portfolio</span><span class="lang-en">Explore portfolio</span>
+            </a>
         </div>
     </header>
 
     <section id="about" class="px-8 md:px-20 bg-gray-50/50">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center reveal">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-24 reveal">
             <div>
-                <h2 class="text-[10px] uppercase tracking-[0.4em] gold-text font-bold mb-8">01 / O Studio</h2>
-                <p class="text-4xl font-light leading-tight mb-8">Misja oparta na <span class="italic font-serif text-gray-400">wartościach.</span></p>
-                <p class="text-gray-600 font-light text-lg leading-relaxed">
-                    Jesteśmy zespołem architektów i managerów, którzy łączą projektowanie z praktycznym podejściem do procesu inwestycyjnego. Pracujemy w Polsce i za granicą (Azja, Europa, USA), tworząc przestrzenie odpowiadające na realne potrzeby.
+                <h2 class="text-[10px] uppercase tracking-[0.4em] gold-text font-bold mb-10">01 / <span class="lang-pl">O nas</span><span class="lang-en">The Studio</span></h2>
+                <p class="text-4xl font-light leading-tight mb-10">
+                    <span class="lang-pl">Doświadczenie, które <br><span class="italic font-serif text-gray-400">tworzy wartość.</span></span>
+                    <span class="lang-en">Experience that <br><span class="italic font-serif text-gray-400">creates value.</span></span>
                 </p>
-            </div>
-            <div class="grid grid-cols-1 gap-8">
-                <div class="border-l border-gold pl-8">
-                    <p class="text-3xl font-serif mb-2">65+ lat</p>
-                    <p class="text-[10px] uppercase tracking-widest text-gray-400">Łącznego doświadczenia zespołu</p>
-                </div>
-                <div class="border-l border-gold pl-8">
-                    <p class="text-3xl font-serif mb-2">35,000 m²</p>
-                    <p class="text-[10px] uppercase tracking-widest text-gray-400">Powierzchni zaprojektowanej</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="specialties" class="px-8 md:px-20">
-        <div class="max-w-6xl mx-auto reveal">
-            <h2 class="text-[10px] uppercase tracking-[0.4em] gold-text font-bold mb-16 text-center">02 / Specjalizacje</h2>
-            <div class="grid md:grid-cols-3 gap-16">
-                <div class="group">
-                    <h3 class="text-xl mb-6 uppercase tracking-widest font-light border-b border-gray-100 pb-4">Architektura</h3>
-                    <ul class="text-sm text-gray-500 space-y-3 font-light">
-                        <li>• Budynki użyteczności publicznej</li>
-                        <li>• Luksusowe rezydencje</li>
-                        <li>• Obiekty hotelowe (Hospitality)</li>
-                        <li>• Edukacja i kampusy</li>
-                    </ul>
-                </div>
-                <div class="group">
-                    <h3 class="text-xl mb-6 uppercase tracking-widest font-light border-b border-gray-100 pb-4">Zarządzanie</h3>
-                    <ul class="text-sm text-gray-500 space-y-3 font-light">
-                        <li>• Design Management</li>
-                        <li>• Project Management (IPMA)</li>
-                        <li>• Optymalizacja kosztów</li>
-                        <li>• Koordynacja międzybranżowa</li>
-                    </ul>
-                </div>
-                <div class="group">
-                    <h3 class="text-xl mb-6 uppercase tracking-widest font-light border-b border-gray-100 pb-4">Standardy</h3>
-                    <ul
+                <div class="text-gray-500 font-light text-lg space-y-6">
+                    <p class="lang-pl">
