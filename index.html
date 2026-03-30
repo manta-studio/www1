@@ -8,13 +8,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #c5a059; --dark: #0a0a0a; }
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: var(--dark); scroll-behavior: smooth; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: var(--dark); scroll-behavior: smooth; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .gold-text { color: var(--gold); }
         
-        /* Animacje - Niezawodne przejścia */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        /* KULOODPORNE ANIMACJE:
+           Domyślnie wszystko JEST WIDOCZNE (opacity: 1).
+           Dopiero JS doda klasę .is-hidden, jeśli zadziała poprawnie.
+        */
+        .reveal { transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); opacity: 1; transform: translateY(0); }
+        .reveal.is-hidden { opacity: 0; transform: translateY(40px); }
 
         /* Obsługa języków */
         .lang-en { display: none; }
@@ -28,11 +31,6 @@
 
         header { min-height: 90vh; display: flex; align-items: center; padding: 0 8%; }
         section { padding: 120px 8%; border-bottom: 1px solid #f7f7f7; }
-        
-        /* Ukrycie paska przewijania dla czystszego wyglądu */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: var(--gold); }
     </style>
 </head>
 <body>
@@ -44,7 +42,7 @@
                 <a href="#about" class="nav-link"><span class="lang-pl">O NAS</span><span class="lang-en">ABOUT</span></a>
                 <a href="#specialties" class="nav-link"><span class="lang-pl">SPECJALIZACJE</span><span class="lang-en">SERVICES</span></a>
                 <a href="#portfolio" class="nav-link">PORTFOLIO</a>
-                <a href="#partners" class="nav-link"><span class="lang-pl">PARTNERZY</span><span class="lang-en">PARTNERS</span></a>
+                <a href="#credentials" class="nav-link"><span class="lang-pl">PARTNERZY</span><span class="lang-en">PARTNERS</span></a>
                 <a href="#contact" class="nav-link"><span class="lang-pl">KONTAKT</span><span class="lang-en">CONTACT</span></a>
             </div>
             <button onclick="toggleLanguage()" id="langBtn">EN</button>
@@ -52,7 +50,7 @@
     </nav>
 
     <header>
-        <div class="reveal active max-w-6xl mx-auto w-full pt-20">
+        <div class="reveal max-w-6xl mx-auto w-full pt-20">
             <p class="text-[10px] uppercase tracking-[0.5em] gold-text font-bold mb-6">International Architecture & Management</p>
             <h1 class="text-5xl md:text-8xl font-light leading-tight mb-8">
                 <span class="lang-pl">Projektujemy <br><span class="italic gold-text">przestrzeń jutra.</span></span>
@@ -87,4 +85,161 @@
                     <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mt-2"><span class="lang-pl">Zaprojektowanej powierzchni</span><span class="lang-en">Designed Area</span></p>
                 </div>
                 <div class="border-l-2 border-gold pl-6">
-                    <p class="text-4xl font-serif">4 <span class="text-lg uppercase tracking-widest font
+                    <p class="text-4xl font-serif">4 <span class="text-lg uppercase tracking-widest font-sans font-light text-gray-400">Kontynenty</span></p>
+                    <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mt-2"><span class="lang-pl">Zasięg międzynarodowy</span><span class="lang-en">International reach</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="specialties" class="bg-gray-50/50">
+        <div class="max-w-6xl mx-auto reveal">
+            <h2 class="text-[10px] uppercase tracking-[0.4em] gold-text font-bold mb-16 text-center">02 / <span class="lang-pl">SPECJALIZACJE</span><span class="lang-en">SERVICES</span></h2>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="bg-white p-10 border border-gray-100 shadow-sm hover:border-gold transition duration-500">
+                    <h3 class="text-lg mb-4 uppercase tracking-widest font-semibold"><span class="lang-pl">Architektura</span><span class="lang-en">Architecture</span></h3>
+                    <p class="text-sm text-gray-500 font-light leading-relaxed"><span class="lang-pl">Projekty budynków użyteczności publicznej, hotele premium oraz kampusy edukacyjne.</span><span class="lang-en">Public buildings, luxury hotels, and educational campuses.</span></p>
+                </div>
+                <div class="bg-white p-10 border border-gray-100 shadow-sm hover:border-gold transition duration-500">
+                    <h3 class="text-lg mb-4 uppercase tracking-widest font-semibold"><span class="lang-pl">Zarządzanie</span><span class="lang-en">Management</span></h3>
+                    <p class="text-sm text-gray-500 font-light leading-relaxed"><span class="lang-pl">Design Management, optymalizacja kosztów i pełna koordynacja procesów inwestycyjnych.</span><span class="lang-en">Design Management, value engineering, and full investment coordination.</span></p>
+                </div>
+                <div class="bg-white p-10 border border-gray-100 shadow-sm hover:border-gold transition duration-500">
+                    <h3 class="text-lg mb-4 uppercase tracking-widest font-semibold"><span class="lang-pl">Doradztwo</span><span class="lang-en">Advisory</span></h3>
+                    <p class="text-sm text-gray-500 font-light leading-relaxed"><span class="lang-pl">Certyfikacja LEED, audyty techniczne oraz wdrażanie standardów zrównoważonego rozwoju.</span><span class="lang-en">LEED certification, technical audits, and sustainability standards implementation.</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="max-w-7xl mx-auto reveal">
+            <h2 class="text-[10px] uppercase tracking-[0.4em] gold-text font-bold mb-16">03 / PORTFOLIO</h2>
+            <div class="grid md:grid-cols-2 gap-16">
+                <div class="group cursor-pointer">
+                    <div class="aspect-[16/10] bg-gray-100 overflow-hidden mb-6">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-1000">
+                    </div>
+                    <h3 class="text-xl uppercase font-light tracking-widest">CP Headquarters</h3>
+                    <p class="text-[10px] gold-text uppercase mt-2 font-bold italic">Vietnam | LEED Platinum</p>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="aspect-[16/10] bg-gray-100 overflow-hidden mb-6">
+                        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-1000">
+                    </div>
+                    <h3 class="text-xl uppercase font-light tracking-widest">Nanee Hotel</h3>
+                    <p class="text-[10px] gold-text uppercase mt-2 font-bold italic">Nepal | Boutique Heritage</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="credentials" class="bg-gray-50/50">
+        <div class="max-w-5xl mx-auto reveal text-center">
+            <h2 class="text-[10px] uppercase tracking-[0.4em] gold-text font-bold mb-10">04 / <span class="lang-pl">CERTYFIKATY</span><span class="lang-en">CERTIFICATIONS</span></h2>
+            <p class="text-3xl font-light leading-tight mb-12">
+                <span class="lang-pl">Międzynarodowe standardy <br><span class="italic font-serif text-gray-400">zarządzania i zrównoważonego rozwoju.</span></span>
+                <span class="lang-en">International standards of <br><span class="italic font-serif text-gray-400">management and sustainability.</span></span>
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-6 mb-10">
+                <span class="border border-gray-200 px-8 py-4 text-sm tracking-widest text-gray-800 font-bold bg-white shadow-sm hover:border-gold transition">LEED AP</span>
+                <span class="border border-gray-200 px-8 py-4 text-sm tracking-widest text-gray-800 font-bold bg-white shadow-sm hover:border-gold transition">IPMA</span>
+                <span class="border border-gray-200 px-8 py-4 text-sm tracking-widest text-gray-800 font-bold bg-white shadow-sm hover:border-gold transition">RICS</span>
+                <span class="border border-gray-200 px-8 py-4 text-sm tracking-widest text-gray-800 font-bold bg-white shadow-sm hover:border-gold transition">GPM-b</span>
+            </div>
+            
+            <p class="text-gray-500 font-light leading-relaxed max-w-3xl mx-auto">
+                <span class="lang-pl">Nasza praca opiera się na restrykcyjnych normach zarządzania projektami oraz certyfikacji ekologicznej, co gwarantuje najwyższą jakość i bezpieczeństwo inwestycji.</span>
+                <span class="lang-en">Our work is based on strict project management standards and ecological certification, guaranteeing the highest quality and investment security.</span>
+            </p>
+        </div>
+    </section>
+
+    <section id="partners" class="bg-white">
+        <div class="max-w-6xl mx-auto reveal">
+            <h2 class="text-[10px] uppercase tracking-[0.4em] gold-text font-bold mb-16 text-center">05 / <span class="lang-pl">PARTNERZY I KLIENCI</span><span class="lang-en">PARTNERS & CLIENTS</span></h2>
+            
+            <div class="text-center max-w-4xl mx-auto mb-16">
+                 <h3 class="text-3xl font-light leading-tight">
+                    <span class="lang-pl">Współpracujemy z liderami branży <span class="italic font-serif text-gray-400">na całym świecie.</span></span>
+                    <span class="lang-en">We collaborate with industry leaders <span class="italic font-serif text-gray-400">worldwide.</span></span>
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-y-12 gap-x-8 text-center text-gray-700 text-sm font-semibold uppercase tracking-wider">
+                <div class="border-b border-gray-100 pb-4"><span class="lang-pl">Globalni Inwestorzy</span><span class="lang-en">Global Investors</span></div>
+                <div class="border-b border-gray-100 pb-4"><span class="lang-pl">Marki Hotelowe</span><span class="lang-en">Hotel Brands</span></div>
+                <div class="border-b border-gray-100 pb-4"><span class="lang-pl">Instytucje Publiczne</span><span class="lang-en">Public Institutions</span></div>
+                <div class="border-b border-gray-100 pb-4"><span class="lang-pl">Prywatni Deweloperzy</span><span class="lang-en">Private Developers</span></div>
+                <div class="border-b border-gray-100 pb-4"><span class="lang-pl">Sektor Edukacji</span><span class="lang-en">Education Sector</span></div>
+                <div class="border-b border-gray-100 pb-4"><span class="lang-pl">Fundusze Inwestycyjne</span><span class="lang-en">Investment Funds</span></div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-black text-white px-8 md:px-[10%] py-24">
+        <div class="grid md:grid-cols-2 gap-16 reveal">
+            <div>
+                <h2 class="text-[10px] uppercase tracking-[0.4em] gold-text font-bold mb-10">06 / <span class="lang-pl">KONTAKT</span><span class="lang-en">CONTACT</span></h2>
+                <p class="text-5xl font-light italic gold-text mb-12"><span class="lang-pl">Zbudujmy coś <br>razem.</span><span class="lang-en">Let's build <br>something.</span></p>
+                <div class="space-y-6 text-gray-400 font-light">
+                    <p class="text-white font-bold uppercase tracking-widest">Manta Studio sp. z o.o.</p>
+                    <p>ul. Józefa Piłsudskiego 17/4, 35-074 Rzeszów</p>
+                    <p class="gold-text font-bold text-2xl pt-4 hover:text-white transition cursor-pointer">info@mantastudio.eu</p>
+                </div>
+            </div>
+            <div class="flex flex-col justify-end items-start md:items-end">
+                <p class="text-[9px] uppercase tracking-[0.3em] text-gray-600">&copy; 2026 Manta Studio Architecture</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Zmiana języka
+        function toggleLanguage() {
+            const plElements = document.querySelectorAll('.lang-pl');
+            const enElements = document.querySelectorAll('.lang-en');
+            const btn = document.getElementById('langBtn');
+
+            if (btn.innerText === 'EN') {
+                plElements.forEach(el => el.style.display = 'none');
+                enElements.forEach(el => el.style.display = 'block');
+                btn.innerText = 'PL';
+            } else {
+                plElements.forEach(el => el.style.display = 'block');
+                enElements.forEach(el => el.style.display = 'none');
+                btn.innerText = 'EN';
+            }
+        }
+
+        // 2. Prosty i bezpieczny skrypt do animacji
+        document.addEventListener("DOMContentLoaded", function() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            // Krok A: Ukrywamy sekcje poniżej Hero, DOPIERO GDY JS zadziała.
+            // (Pierwsza sekcja <header> jest pomijana, żeby zawsze była widoczna na start)
+            for (let i = 1; i < reveals.length; i++) {
+                reveals[i].classList.add('is-hidden');
+            }
+
+            // Krok B: Funkcja, która sprawdza pozycję scrolla
+            function checkScroll() {
+                const windowHeight = window.innerHeight;
+                reveals.forEach(el => {
+                    const elementTop = el.getBoundingClientRect().top;
+                    // Jeśli element jest widoczny w oknie, usuwamy klasę ukrywającą
+                    if (elementTop < windowHeight - 50) {
+                        el.classList.remove('is-hidden');
+                    }
+                });
+            }
+
+            // Krok C: Nasłuchujemy scrolla i odpalamy raz na start
+            window.addEventListener('scroll', checkScroll);
+            checkScroll();
+        });
+    </script>
+
+</body>
+</html>
