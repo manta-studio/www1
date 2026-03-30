@@ -3,65 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manta Studio | Architecture & Design Management</title>
+    <title>Manta Studio | Architecture & Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #c5a059; --dark: #0a0a0a; }
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: var(--dark); scroll-behavior: smooth; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: var(--dark); scroll-behavior: smooth; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .gold-text { color: var(--gold); }
-        .gold-bg { background-color: var(--gold); }
         
-        /* Animacje Reveal */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.2, 1, 0.3, 1); }
+        /* Animacje pojawiania się przy przewijaniu */
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
+        /* Obsługa języków - domyślnie PL widoczne, EN ukryte */
         .lang-en { display: none; }
+        .lang-pl { display: block; }
+        
+        /* Styl przycisku języka */
+        #langBtn { cursor: pointer; border: 1px solid var(--gold); padding: 2px 8px; font-size: 10px; color: var(--gold); font-weight: bold; }
+        #langBtn:hover { background: var(--gold); color: white; }
+
+        header { min-height: 80vh; display: flex; align-items: center; padding: 0 10%; }
+        section { padding: 100px 10%; border-bottom: 1px solid #f7f7f7; }
         .nav-link:hover { color: var(--gold); }
-        header { min-height: 90vh; display: flex; align-items: center; }
-        section { padding: 120px 0; }
     </style>
 </head>
 <body>
 
-    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100 px-8 py-6 flex justify-between items-center">
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-gray-100 px-8 py-6 flex justify-between items-center">
         <div class="text-xl font-bold tracking-[0.4em]">MANTA STUDIO</div>
         <div class="flex items-center space-x-8">
             <div class="hidden md:flex space-x-10 text-[10px] uppercase tracking-[0.2em] font-semibold">
-                <a href="#about" class="nav-link"><span class="lang-pl">O nas</span><span class="lang-en">About</span></a>
-                <a href="#specialties" class="nav-link"><span class="lang-pl">Specjalizacje</span><span class="lang-en">Specialties</span></a>
-                <a href="#portfolio" class="nav-link">Portfolio</a>
-                <a href="#contact" class="nav-link"><span class="lang-pl">Kontakt</span><span class="lang-en">Contact</span></a>
+                <a href="#about" class="nav-link"><span class="lang-pl">O NAS</span><span class="lang-en">ABOUT</span></a>
+                <a href="#specialties" class="nav-link"><span class="lang-pl">SPECJALIZACJE</span><span class="lang-en">SERVICES</span></a>
+                <a href="#portfolio" class="nav-link">PORTFOLIO</a>
+                <a href="#contact" class="nav-link"><span class="lang-pl">KONTAKT</span><span class="lang-en">CONTACT</span></a>
             </div>
-            <button onclick="toggleLang()" id="langBtn" class="border border-gold px-3 py-1 text-[10px] gold-text font-bold hover:bg-gold hover:text-white transition">EN</button>
+            <button onclick="toggleLanguage()" id="langBtn">EN</button>
         </div>
     </nav>
 
-    <header class="px-8 md:px-20">
+    <header>
         <div class="reveal active">
             <p class="text-[10px] uppercase tracking-[0.5em] gold-text font-bold mb-6">International Architecture & Management</p>
-            <h1 class="text-6xl md:text-8xl font-light leading-[1.1] mb-10">
+            <h1 class="text-5xl md:text-8xl font-light leading-tight mb-8">
                 <span class="lang-pl">Projektujemy <br><span class="italic gold-text">przestrzeń jutra.</span></span>
                 <span class="lang-en">Designing <br><span class="italic gold-text">tomorrow's space.</span></span>
             </h1>
-            <p class="max-w-xl text-gray-400 text-lg font-light leading-relaxed mb-12">
-                <span class="lang-pl">Pomagamy inwestorom realizować wizje na 4 kontynentach. Łączymy design z rygorem biznesowym.</span>
-                <span class="lang-en">Helping investors realize visions across 4 continents. Merging design with business rigor.</span>
+            <p class="max-w-xl text-gray-500 text-lg font-light leading-relaxed mb-10">
+                <span class="lang-pl">Łączymy globalną perspektywę z troską o ludzi, środowisko i sens biznesowy.</span>
+                <span class="lang-en">We combine a global perspective with care for people, environment, and business sense.</span>
             </p>
-            <a href="#portfolio" class="inline-block border border-black px-12 py-4 text-[10px] uppercase tracking-widest font-bold hover:bg-black hover:text-white transition">
-                <span class="lang-pl">Eksploruj portfolio</span><span class="lang-en">Explore portfolio</span>
+            <a href="#portfolio" class="inline-block border border-black px-10 py-4 text-[10px] uppercase tracking-widest font-bold hover:bg-black hover:text-white transition">
+                <span class="lang-pl">Zobacz projekty</span><span class="lang-en">View portfolio</span>
             </a>
         </div>
     </header>
 
-    <section id="about" class="px-8 md:px-20 bg-gray-50/50">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-24 reveal">
+    <section id="about">
+        <div class="grid md:grid-cols-2 gap-16 reveal">
             <div>
-                <h2 class="text-[10px] uppercase tracking-[0.4em] gold-text font-bold mb-10">01 / <span class="lang-pl">O nas</span><span class="lang-en">The Studio</span></h2>
-                <p class="text-4xl font-light leading-tight mb-10">
-                    <span class="lang-pl">Doświadczenie, które <br><span class="italic font-serif text-gray-400">tworzy wartość.</span></span>
-                    <span class="lang-en">Experience that <br><span class="italic font-serif text-gray-400">creates value.</span></span>
+                <h2 class="text-[10px] uppercase tracking-[0.4em] gold-text font-bold mb-8">01 / <span class="lang-pl">O NAS</span><span class="lang-en">ABOUT</span></h2>
+                <p class="text-4xl font-light leading-tight mb-8">
+                    <span class="lang-pl">Doświadczenie, które buduje <span class="italic font-serif text-gray-400">zaufanie.</span></span>
+                    <span class="lang-en">Experience that builds <span class="italic font-serif text-gray-400">trust.</span></span>
                 </p>
-                <div class="text-gray-500 font-light text-lg space-y-6">
-                    <p class="lang-pl">
+                <div class="text-gray-600 font-light text-lg">
+                    <p class="lang-pl">Jesteśmy zespołem architektów i managerów z ponad 65-letnim doświadczeniem. Pracujemy w Polsce i za granicą (Azja, Europa, USA), tworząc przestrzenie odpowiadające na realne potrzeby.</p>
+                    <p class="lang-en">We are a team of architects and managers with over 65 years of experience. We work in Poland and abroad (Asia, Europe, USA), creating spaces that respond to real needs.</p>
+                </div>
+            </div>
+            <div class="flex flex-col justify-center space-y-10">
+                <div class="border-l-2 border-gold pl-6">
+                    <p class="text-3xl font-serif">35,000+ m²</p>
+                    <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold"><span class="lang-pl">Zaprojektowanej powierzchni</span><span class="lang-en">Designed Area</span></p>
+                </div>
+                <div class="border-l-2 border-gold pl-6">
+                    <p class="text-3xl font-serif">LEED / IPMA</p>
+                    <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold"><span class="lang-pl">Międzynarodowe standardy</span><span class="lang-en">International Standards</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="specialties" class="bg-gray-50/50">
+        <div class="reveal">
+            <h2 class="text-[10px] uppercase tracking-[0.4em] gold-text font-bold mb-16 text-center">02 / <span class="lang-pl">SPECJALIZACJE</span><span class="lang-en">SERVICES</span></h2>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="bg-white p-8 border border-gray-100 shadow-sm">
+                    <h3 class="text-lg mb-4 uppercase tracking-widest font-semibold"><span class="lang-pl">Architektura</span><span class="lang-en">Architecture</span></h3>
+                    <p class="text-sm text-gray-500 font-light"><span class="lang-pl">Projekty budynków użyteczności publicznej, hotele premium oraz kampusy edukacyjne.</span><span class="lang-en">Public buildings, luxury hotels, and educational campuses.</span></p>
+                </div>
+                <div class="bg-white p-8 border border-gray-100 shadow-sm">
+                    <h3 class="text-lg mb-4 uppercase tracking-widest font-semibold"><span class="lang-pl">Zarządzanie</span><span class="lang-en">Management</span></h3>
+                    <p class="text-sm text-gray-500 font-light"><span class="lang-pl">Design Management, optymalizacja kosztów i pełna koordynacja procesów inwestycyjnych.</span><span class="lang-en">Design Management, value engineering, and full investment coordination.</span></p>
+                </div>
+                <div class="bg-white p-8 border border-gray-100 shadow-sm">
+                    <h3 class="text-lg mb-4 uppercase tracking-widest font-semibold"><span class="lang-pl">Doradztwo</span><span class="lang-en">Advisory</span></h3>
+                    <p class="text-sm text-gray-500 font-light"><span class="lang-pl">Certyfikacja LEED Platinum, audyty techniczne oraz standardy zrównoważonego rozwoju.</span><span class="lang-en">LEED Platinum certification, technical audits, and sustainability standards.</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="reveal">
+            <h2 class="text-[10px] uppercase tracking-[0.4em] gold-text font-bold mb-16">03 / PORTFOLIO</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="group">
+                    <div class="aspect-[16/10] bg-gray-200 overflow-hidden mb-6">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
+                    </div>
+                    <h3 class="text-xl uppercase font-light tracking-widest">CP Headquarters</h3>
+                    <p class="text-[10px] gold-text uppercase mt-2 font-bold italic">Vietnam | LEED Platinum</p>
+                </div>
+                <div class="group">
+                    <div class="aspect-[16/10] bg-gray-200 overflow-hidden mb-6">
+                        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
+                    </div>
+                    <h3 class="text-xl uppercase font-light tracking-widest">Nanee Hotel</h3>
+                    <p class="text-[10px] gold-text uppercase mt-2 font-bold italic">Nepal | Boutique Heritage</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-black text-white px-[10%] py-24">
+        <div class="grid md:grid-cols-2 gap-16 reveal">
+            <div>
+                <h2 class="text-[10px] uppercase tracking-[0.4em] gold-text font-bold mb-10">04 / <span class="lang-pl">KONTAKT</span><span class="lang-en">CONTACT</span></h2>
+                <p class="text-5xl font-light italic gold-text mb-12"><span class="lang-pl">Zbudujmy coś <br>razem.</span><span class="lang-en">Let's build <br>something.</span></p>
+                <div class="space-y-6 text-gray-400 font-light">
+                    <p class="text-white font-bold uppercase">Manta Studio sp. z o.o.</p>
+                    <p>ul. Józefa Piłsudskiego 17/4, Rzeszów</p>
+                    <p class="gold-text font-bold text-2xl pt-4">info@mantastudio.eu</p>
+                </div>
+            </div>
+            <div class="flex flex-col justify-end items-start md:items-end opacity-40">
+                <div class="flex space-x-4 mb-12">
+                    <span class="border border-white px-3 py-1 text-[8px] tracking-widest">LEED</span>
+                    <span class="border border-white px-3 py-1 text-[8px] tracking-widest">IPMA</span>
+                    <span class="border border-white px-3 py-1 text-[8px] tracking-widest">RICS</span>
+                </div>
+                <p class="text-[9px] uppercase tracking-[0.3em]">&copy; 2026 Manta Studio Architecture</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Funkcja zmiany języka
+        function toggleLanguage() {
+            const plElements = document.querySelectorAll('.lang-pl');
+            const enElements = document.querySelectorAll('.lang-en');
+            const btn = document.getElementById('langBtn');
+
+            if (btn.innerText === 'EN') {
+                plElements.forEach(el => el.style.display = 'none');
+                enElements.forEach(el => el.style.display = 'block');
+                btn.innerText = 'PL';
+            } else {
+                plElements.forEach(el => el.style.display = 'block');
+                enElements.forEach(el => el.style.display = 'none');
+                btn.innerText = 'EN';
+            }
+        }
+
+        // Funkcja animacji przy scrollowaniu
+        function handleReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleReveal);
+        window.addEventListener('load', handleReveal);
+    </script>
+
+</body>
+</html>
